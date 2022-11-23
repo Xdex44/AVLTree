@@ -1,7 +1,7 @@
-
+use AvlTree::AvlTree::AvlTree;
 fn main() {
     //all condition
-    let mut tree3 = AvlTree{root: Node::new(33)};
+    let mut tree3 = AvlTree::new();
     tree3.insert(13);
     tree3.insert(11);
     tree3.insert(53);

@@ -45,6 +45,7 @@ where T: Debug+Ord+Display+Copy
 #[derive(Clone, Debug, PartialEq)]
 pub struct AvlTree<T:Ord + Display + Debug + Copy>{
     root : Tree<T>,
+    count : usize,
 }
 trait _Tree<T>
 where T: Ord+Display+Debug+Clone+Copy{
@@ -304,8 +305,8 @@ where T: Ord+Display+Debug+Clone+Copy{
 
 impl <T> AvlTree<T>
 where T: Ord+Display+Debug+Clone+Copy{
-    pub fn default() -> Self{
-        AvlTree { root: None }
+    pub fn new() -> Self{
+        AvlTree { root: None ,count: 0}
     }
 
     pub fn is_empty(&self) -> bool{
@@ -399,6 +400,7 @@ where T: Ord+Display+Debug+Clone+Copy{
         let root_node = self.root.clone();
         let res_tree = self.root.do_insert(root_node,key);
         self.root = res_tree;
+        self.count += 1;
     }
 
     
@@ -406,6 +408,7 @@ where T: Ord+Display+Debug+Clone+Copy{
         let root_node = self.root.clone();
         let res_tree = self.root.do_delete(root_node.clone(),key);
         self.root = res_tree;
+        self.count -= 1;
     }
 
     pub fn search(&self, key: T) -> Tree<T> {
